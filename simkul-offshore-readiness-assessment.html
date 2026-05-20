@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offshore Readiness Assessment | Simkul Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f7f5f0;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px 60px;
+  }
+
+  .oa-wrap {
+    width: 100%;
+    max-width: 640px;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+  }
+
+  /* ── Cover ── */
+  .oa-cover { padding: 40px 40px 32px; }
+
+  .oa-logo {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .oa-logo-dot {
+    width: 20px;
+    height: 20px;
+    background: #93c19a;
+    border-radius: 50%;
+  }
+
+  .oa-cover-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #111;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .oa-cover-sub {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.65;
+    margin-bottom: 28px;
+    max-width: 480px;
+  }
+
+  .oa-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .oa-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #777;
+  }
+
+  .oa-meta-icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.6;
+  }
+
+  .oa-divider {
+    border: none;
+    border-top: 1px solid #f0ede8;
+    margin: 0;
+  }
+
+  .oa-cover-footer {
+    padding: 24px 40px 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .oa-footer-item-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 4px;
+  }
+
+  .oa-footer-item-text {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.5;
+  }
+
+  /* ── Buttons ── */
+  .oa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #93c19a;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 26px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    text-decoration: none;
+  }
+
+  .oa-btn:hover { background: #7aaa81; }
+  .oa-btn:active { transform: scale(0.98); }
+
+  .oa-btn-ghost {
+    background: transparent;
+    border: 1.5px solid #ddd;
+    color: #777;
+  }
+
+  .oa-btn-ghost:hover { background: #f7f5f0; }
+
+  .oa-btn-dark {
+    background: #111;
+    color: #fff;
+  }
+
+  .oa-btn-dark:hover { background: #333; }
+
+  /* ── Question screen ── */
+  .oa-q-wrap { padding: 36px 40px 40px; }
+
+  .oa-progress-bar {
+    height: 3px;
+    background: #eee;
+    border-radius: 99px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+
+  .oa-progress-fill {
+    height: 100%;
+    background: #93c19a;
+    border-radius: 99px;
+    transition: width 0.35s ease;
+  }
+
+  .oa-q-num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 12px;
+  }
+
+  .oa-q-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #111;
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+
+  .oa-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .oa-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 15px 18px;
+    border: 1.5px solid #e8e4dc;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    background: #fff;
+  }
+
+  .oa-option:hover {
+    border-color: #93c19a;
+    background: #f5fbf5;
+  }
+
+  .oa-option.selected {
+    border-color: #93c19a;
+    background: #f0f9f0;
+  }
+
+  .oa-option-dot {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 50%;
+    border: 1.5px solid #ccc;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+
+  .oa-option.selected .oa-option-dot {
+    background: #93c19a;
+    border-color: #93c19a;
+  }
+
+  .oa-option-dot-inner {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #000;
+    display: none;
+  }
+
+  .oa-option.selected .oa-option-dot-inner { display: block; }
+
+  .oa-option-text {
+    font-size: 14px;
+    color: #222;
+    line-height: 1.55;
+  }
+
+  .oa-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ── Results ── */
+  .oa-result-wrap { padding: 36px 40px 44px; }
+
+  .oa-result-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 99px;
+    margin-bottom: 20px;
+  }
+
+  .badge-ready { background: #d4edda; color: #1a6e35; }
+  .badge-almost { background: #fff3cd; color: #7a5a00; }
+  .badge-not-yet { background: #f8d7da; color: #7a1a1a; }
+
+  .oa-result-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #111;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+
+  .oa-result-desc {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  .oa-score-display {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding: 18px 20px;
+    background: #f7f5f0;
+    border-radius: 10px;
+  }
+
+  .oa-score-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 40px;
+    color: #111;
+    line-height: 1;
+    min-width: 52px;
+  }
+
+  .oa-score-label {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.4;
+  }
+
+  .oa-score-bar-wrap { flex: 1; }
+
+  .oa-score-bar {
+    height: 6px;
+    background: #e5e0d8;
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .oa-score-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: #93c19a;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .oa-score-markers {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #bbb;
+    letter-spacing: 0.03em;
+  }
+
+  .oa-findings { margin-bottom: 28px; }
+
+  .oa-findings-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 14px;
+  }
+
+  .oa-finding {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid #f0ede8;
+  }
+
+  .oa-finding:last-child { border-bottom: none; }
+
+  .oa-finding-icon {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .icon-ready { background: #d4edda; color: #1a6e35; }
+  .icon-almost { background: #fff3cd; color: #7a5a00; }
+  .icon-not-yet { background: #f8d7da; color: #7a1a1a; }
+
+  .oa-finding-text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.55;
+  }
+
+  .oa-cta-card {
+    background: #93c19a;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .oa-cta-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #000;
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  .oa-cta-sub {
+    font-size: 14px;
+    color: rgba(0,0,0,0.65);
+    margin-bottom: 20px;
+    line-height: 1.55;
+  }
+
+  .oa-direct-contact {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .oa-direct-contact strong { color: #333; }
+
+  .oa-restart-btn {
+    background: none;
+    border: none;
+    font-size: 13px;
+    color: #aaa;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: underline;
+    padding: 0;
+    display: block;
+  }
+
+  .oa-restart-btn:hover { color: #555; }
+
+  /* ── Arrow SVG inline ── */
+  .arrow-icon {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 520px) {
+    body { padding: 0; background: #fff; }
+    .oa-wrap { border-radius: 0; box-shadow: none; }
+    .oa-cover { padding: 32px 24px 24px; }
+    .oa-cover-footer { padding: 20px 24px 28px; grid-template-columns: 1fr; }
+    .oa-q-wrap { padding: 28px 24px 32px; }
+    .oa-result-wrap { padding: 28px 24px 36px; }
+    .oa-cover-title { font-size: 26px; }
+    .oa-q-text { font-size: 20px; }
+    .oa-result-title { font-size: 24px; }
+    .oa-score-num { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="oa-wrap" role="main">
+  <div id="oa-screen"></div>
+</div>
+
+<script>
+  const QUESTIONS = [
+    {
+      text: "How would you describe your key business processes right now?",
+      options: [
+        { text: "They live mostly in my head — nothing's really written down", score: 1 },
+        { text: "Some things are documented, but it's patchy and out of date", score: 2 },
+        { text: "Most key processes are documented and the team can follow them", score: 3 }
+      ]
+    },
+    {
+      text: "What happens in your business when you're unavailable for a day?",
+      options: [
+        { text: "Things stall — everything important waits for me", score: 1 },
+        { text: "The team manages routine stuff, but anything significant comes back to me", score: 2 },
+        { text: "The team handles most things independently with clear guidelines", score: 3 }
+      ]
+    },
+    {
+      text: "How many hours a week do you personally spend on tasks someone else could do with the right information?",
+      options: [
+        { text: "More than 20 hours", score: 1 },
+        { text: "10–20 hours", score: 2 },
+        { text: "Fewer than 10 hours", score: 3 }
+      ]
+    },
+    {
+      text: "What's your experience with offshore or remote team members?",
+      options: [
+        { text: "None — this would be our first time", score: 2 },
+        { text: "We've tried offshore before and it didn't work out", score: 1 },
+        { text: "We have remote local staff but haven't hired offshore", score: 2 },
+        { text: "We've successfully hired offshore before", score: 3 }
+      ]
+    },
+    {
+      text: "How does your business currently onboard new team members?",
+      options: [
+        { text: "We figure it out as we go — no real onboarding process", score: 1 },
+        { text: "We have some materials but it takes months to get someone up to speed", score: 2 },
+        { text: "We have a structured onboarding process that works reliably", score: 3 }
+      ]
+    },
+    {
+      text: "What's mainly driving your interest in offshore staffing right now?",
+      options: [
+        { text: "We're stretched and need help urgently", score: 2 },
+        { text: "I want to grow without the cost of additional local hires", score: 3 },
+        { text: "I want to test whether offshore could work for us", score: 2 },
+        { text: "Someone mentioned it and I'm just starting to explore", score: 1 }
+      ]
+    },
+    {
+      text: "How comfortable are you managing someone you can't see in person?",
+      options: [
+        { text: "Honestly, I find it hard to manage people even in the office", score: 1 },
+        { text: "I'm OK with it but could use better systems and structure", score: 2 },
+        { text: "I'm comfortable with remote management and have the tools in place", score: 3 }
+      ]
+    },
+    {
+      text: "How would you measure whether an offshore hire is performing well?",
+      options: [
+        { text: "Mostly gut feel — I don't have clear metrics in place", score: 1 },
+        { text: "I have some measures but nothing consistent or documented", score: 2 },
+        { text: "We have clear KPIs and regular check-ins for key roles", score: 3 }
+      ]
+    },
+    {
+      text: "Who would manage the offshore hire day-to-day?",
+      options: [
+        { text: "Me — on top of everything else I'm already doing", score: 1 },
+        { text: "A team member, though they'd need a fair bit of guidance", score: 2 },
+        { text: "We have a team lead or operations person who could own it", score: 3 }
+      ]
+    },
+    {
+      text: "How deliberate are you about making team members feel genuinely included?",
+      options: [
+        { text: "Honestly, even our local team doesn't feel that connected", score: 1 },
+        { text: "We try with local staff but haven't thought about offshore specifically", score: 2 },
+        { text: "Culture and team integration matter to us — we're intentional about it", score: 3 }
+      ]
+    }
+  ];
+
+  const RESULTS = {
+    ready: {
+      label: "Ready Now",
+      badgeClass: "badge-ready",
+      iconClass: "icon-ready",
+      iconChar: "✓",
+      title: "Your business is ready to hire offshore.",
+      desc: "Based on your answers, you have the foundations in place — documented processes, a capable team, and the management bandwidth to integrate someone properly. A well-matched offshore hire could be live and contributing within a few weeks.",
+      findings: [
+        "Your processes are documented enough to hand off.",
+        "Your team can operate independently — the hire won't get lost.",
+        "You have clear expectations and can measure performance.",
+        "You have the right mindset for long-term offshore success."
+      ],
+      cta: "Book a discovery call and we'll map out your first hire — role, brief, and timeline."
+    },
+    almost: {
+      label: "Almost Ready",
+      badgeClass: "badge-almost",
+      iconClass: "icon-almost",
+      iconChar: "→",
+      title: "You're close — a few things to sort first.",
+      desc: "Your business has strong fundamentals, but a couple of gaps could undermine an offshore hire if they're not addressed. The good news: these are fixable. We help clients get offshore-ready as part of the recruitment process — you don't have to figure it out alone.",
+      findings: [
+        "Some processes need documenting before you hand them off.",
+        "It's worth clarifying who will manage the hire day-to-day.",
+        "Defining what success looks like in the first 90 days will protect the hire.",
+        "With the right preparation, you could be ready within 4–6 weeks."
+      ],
+      cta: "Book a call — we'll tell you exactly what to fix before we start your search."
+    },
+    notYet: {
+      label: "Not Ready Yet",
+      badgeClass: "badge-not-yet",
+      iconClass: "icon-not-yet",
+      iconChar: "!",
+      title: "Offshore hiring would likely fail right now — but that's fixable.",
+      desc: "Your answers suggest the business isn't ready to absorb an offshore hire yet. That's not a judgment — it's the reality for most SMEs before they've done foundational operations work. Hiring offshore before fixing these foundations is one of the main reasons offshore arrangements fall apart. The better path is to fix the foundations first.",
+      findings: [
+        "Processes need to be documented before anyone can follow them remotely.",
+        "The business is too dependent on you — an offshore hire will just become another thing you manage.",
+        "Without a structured onboarding process, the first few months will be chaotic.",
+        "The right first step is an operations review, not a recruitment brief."
+      ],
+      cta: "Book a discovery call. We'll be straight with you about what to fix first — and we can help you fix it."
+    }
+  };
+
+  // ── UPDATE THIS URL with your Outlook Bookings link ──
+  const BOOKING_URL = "https://outlook.office.com/book/yourfuture@simkul.au/?ismsaljsauthenabled=true";
+
+  let current = 0;
+  let answers = [];
+  let selectedIdx = null;
+
+  const arrowRight = `<svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
+  const arrowLeft  = `<svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>`;
+
+  function getResult(score) {
+    if (score >= 24) return RESULTS.ready;
+    if (score >= 17) return RESULTS.almost;
+    return RESULTS.notYet;
+  }
+
+  function getTotalScore() {
+    return answers.reduce(function(a, b) { return a + b; }, 0);
+  }
+
+  function renderCover() {
+    document.getElementById('oa-screen').innerHTML = `
+      <div class="oa-cover">
+        <div class="oa-logo">
+          <div class="oa-logo-dot"></div>
+          Simkul Solutions
+        </div>
+        <h1 class="oa-cover-title">Are you ready to hire offshore?</h1>
+        <p class="oa-cover-sub">10 questions. 3 minutes. A straight answer about whether your business is set up to make an offshore hire work — and if not, exactly what's in the way.</p>
+        <div class="oa-meta">
+          <span class="oa-meta-item">
+            <svg class="oa-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            3 minutes
+          </span>
+          <span class="oa-meta-item">
+            <svg class="oa-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            10 questions
+          </span>
+          <span class="oa-meta-item">
+            <svg class="oa-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            No email required
+          </span>
+        </div>
+        <button class="oa-btn" id="start-btn">Start the assessment ${arrowRight}</button>
+      </div>
+      <hr class="oa-divider">
+      <div class="oa-cover-footer">
+        <div>
+          <div class="oa-footer-item-title">Flat-fee. No ongoing markups.</div>
+          <div class="oa-footer-item-text">We charge once. Your offshore hire keeps 100% of their salary.</div>
+        </div>
+        <div>
+          <div class="oa-footer-item-title">We only take you on if we think it'll work.</div>
+          <div class="oa-footer-item-text">If you're not ready, we'll tell you — and help you get there.</div>
+        </div>
+      </div>
+    `;
+    document.getElementById('start-btn').addEventListener('click', function() {
+      current = 0; answers = []; selectedIdx = null;
+      renderQuestion();
+    });
+  }
+
+  function renderQuestion() {
+    var q = QUESTIONS[current];
+    var progress = (current / QUESTIONS.length) * 100;
+
+    document.getElementById('oa-screen').innerHTML = `
+      <div class="oa-q-wrap">
+        <div class="oa-progress-bar">
+          <div class="oa-progress-fill" style="width:${progress}%"></div>
+        </div>
+        <div class="oa-q-num">Question ${current + 1} of ${QUESTIONS.length}</div>
+        <div class="oa-q-text">${q.text}</div>
+        <div class="oa-options">
+          ${q.options.map(function(opt, i) {
+            return `<div class="oa-option${selectedIdx === i ? ' selected' : ''}" data-idx="${i}" tabindex="0" role="radio" aria-checked="${selectedIdx === i ? 'true' : 'false'}">
+              <div class="oa-option-dot"><div class="oa-option-dot-inner"></div></div>
+              <div class="oa-option-text">${opt.text}</div>
+            </div>`;
+          }).join('')}
+        </div>
+        <div class="oa-nav">
+          <button class="oa-btn oa-btn-ghost" id="back-btn" ${current === 0 ? 'style="visibility:hidden"' : ''}>
+            ${arrowLeft} Back
+          </button>
+          <button class="oa-btn" id="next-btn" ${selectedIdx === null ? 'disabled style="opacity:0.4;cursor:not-allowed"' : ''}>
+            ${current === QUESTIONS.length - 1 ? 'See my results' : 'Next'} ${arrowRight}
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.querySelectorAll('.oa-option').forEach(function(el) {
+      function select() {
+        selectedIdx = parseInt(el.getAttribute('data-idx'));
+        renderQuestion();
+      }
+      el.addEventListener('click', select);
+      el.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(); }
+      });
+    });
+
+    var nextBtn = document.getElementById('next-btn');
+    nextBtn.addEventListener('click', function() {
+      if (selectedIdx === null) return;
+      answers[current] = QUESTIONS[current].options[selectedIdx].score;
+      if (current < QUESTIONS.length - 1) {
+        current++;
+        selectedIdx = null;
+        renderQuestion();
+      } else {
+        renderResult();
+      }
+    });
+
+    var backBtn = document.getElementById('back-btn');
+    if (backBtn) {
+      backBtn.addEventListener('click', function() {
+        if (current > 0) { current--; selectedIdx = null; renderQuestion(); }
+      });
+    }
+  }
+
+  function renderResult() {
+    var score = getTotalScore();
+    var pct = Math.round((score / 30) * 100);
+    var result = getResult(score);
+
+    document.getElementById('oa-screen').innerHTML = `
+      <div class="oa-result-wrap">
+        <div class="oa-result-badge ${result.badgeClass}">${result.label}</div>
+        <h2 class="oa-result-title">${result.title}</h2>
+        <p class="oa-result-desc">${result.desc}</p>
+        <div class="oa-score-display">
+          <div>
+            <div class="oa-score-num">${score}</div>
+            <div class="oa-score-label">out of 30</div>
+          </div>
+          <div class="oa-score-bar-wrap">
+            <div class="oa-score-bar">
+              <div class="oa-score-bar-fill" id="score-fill" style="width:0%"></div>
+            </div>
+            <div class="oa-score-markers">
+              <span>Not ready</span><span>Almost ready</span><span>Ready now</span>
+            </div>
+          </div>
+        </div>
+        <div class="oa-findings">
+          <div class="oa-findings-label">What your answers show</div>
+          ${result.findings.map(function(f) {
+            return `<div class="oa-finding">
+              <div class="oa-finding-icon ${result.iconClass}">${result.iconChar}</div>
+              <div class="oa-finding-text">${f}</div>
+            </div>`;
+          }).join('')}
+        </div>
+        <div class="oa-cta-card">
+          <div class="oa-cta-title">Talk to someone who'll be straight with you.</div>
+          <div class="oa-cta-sub">${result.cta}</div>
+          <a href="${BOOKING_URL}" class="oa-btn oa-btn-dark" target="_blank" rel="noopener">Book a free discovery call ${arrowRight}</a>
+        </div>
+        <p class="oa-direct-contact">Or call us directly: <strong>0468 083 663</strong> — Luke or Simone will pick up.</p>
+        <button class="oa-restart-btn" id="restart-btn">Start again</button>
+      </div>
+    `;
+
+    setTimeout(function() {
+      var fill = document.getElementById('score-fill');
+      if (fill) fill.style.width = pct + '%';
+    }, 120);
+
+    document.getElementById('restart-btn').addEventListener('click', function() {
+      current = 0; answers = []; selectedIdx = null;
+      renderCover();
+    });
+  }
+
+  renderCover();
+</script>
+
+</body>
+</html>
