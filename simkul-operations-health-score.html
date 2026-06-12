@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operations Health Score | Simkul Solutions</title>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://simkul.au/#organization",
+      "name": "Simkul Solutions",
+      "url": "https://simkul.au",
+      "logo": "https://images.squarespace-cdn.com/content/68e8c05c61aedd065e6a9604/f370001d-207a-4363-abb5-fb04b3a128a7/Simkul_logo.jpg",
+      "telephone": "+61468083663",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Perth",
+        "addressRegion": "WA",
+        "addressCountry": "AU"
+      },
+      "areaServed": "AU",
+      "description": "Perth-based SME consulting firm helping Australian small business owners with operations, offshore recruitment, technology improvement, and business process efficiency.",
+      "founder": [
+        { "@type": "Person", "name": "Luke Wheeler" },
+        { "@type": "Person", "name": "Simone Wheeler" }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://simkul.au/operations-health-score/#webpage",
+      "url": "https://simkul.au/operations-health-score/",
+      "name": "Operations Health Score | Simkul Solutions",
+      "description": "Free 12-question diagnostic for Australian SME owners. Get a scored breakdown across delegation, documentation, systems, and team capability — and find out exactly where to focus first.",
+      "isPartOf": { "@id": "https://simkul.au/#organization" },
+      "about": {
+        "@type": "Thing",
+        "name": "Business operations health assessment for Australian SMEs"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Australian SME owners looking to improve their business operations"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://simkul.au/operations-health-score/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an operations health score for a small business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An operations health score is a diagnostic measure of how well a small business's internal operations are functioning across key dimensions — typically delegation, documentation, systems, and team capability. A high score indicates the business can operate predictably without excessive owner involvement. A low score in any dimension points to a specific operational weakness that, if addressed, would meaningfully improve the business's ability to grow, scale, or run without the owner present."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I know if my business operations are healthy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A business with healthy operations can answer yes to most of these questions: Can your team make routine decisions without you? Do your key processes exist somewhere other than your head? Does your technology stack reduce manual work rather than add to it? Can a new team member get up to speed in a reasonable time without your constant involvement? If the answer to most of these is no, the operations have structural gaps that will constrain growth regardless of how hard the owner works."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the most common operational weaknesses in Australian SMEs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The four most common operational weaknesses in Australian SMEs with 5 to 50 staff are: lack of documented processes (team members cannot perform key tasks without asking the owner), poor delegation structures (decisions that could be made by team members still flow back to the owner), disconnected or duplicated technology systems, and inconsistent team capability (the business's performance is highly dependent on a small number of key people). These weaknesses compound each other — poor documentation makes delegation harder, which increases owner dependency, which limits the owner's capacity to fix the documentation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I fix first in my business operations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The highest-leverage starting point depends on the specific weakness. If delegation is the issue, the fix is a decision authority framework — a simple document that specifies which decisions team members can make without escalating. If documentation is the issue, start by recording the three to five processes that come back to you most often. If systems are the issue, start by auditing what tools you are paying for versus what tools your team actually uses. Simkul Solutions helps SME owners identify the right starting point through a free discovery call."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to improve business operations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Meaningful improvement in business operations is typically visible within 6 to 12 weeks when the work is focused on a single dimension rather than attempting a whole-of-business overhaul. Most SME owners see the fastest results from fixing delegation and documentation first, because improvements in those areas immediately reduce the number of interruptions the owner receives each week. Technology and team capability improvements take longer but compound more strongly over time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between business operations and business strategy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Business strategy is the decisions about where to compete and what to offer. Business operations is everything required to deliver on those decisions reliably, day to day, without the business breaking down when key people are unavailable. Most SME owners spend time on strategy when their real constraint is operations — they have a clear enough direction but the business cannot execute it consistently because the internal systems, processes, and team structures are not built to support it."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:    #111111;
+  --green:    #93c19a;
+  --green-lt: #c5e1ca;
+  --cream:    #e1d8c5;
+  --page-bg:  #f0ede6;
+  --white:    #ffffff;
+  --grey:     #666666;
+  --grey-lt:  #aaaaaa;
+  --border:   #e4dfd6;
+  --rad-sm:   8px;
+  --rad-md:   12px;
+  --rad-lg:   16px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--page-bg);
+  min-height: 100vh;
+  padding: 40px 16px 72px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hs-wrap {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Cover ── */
+.hs-cover {
+  background: var(--white);
+  border-radius: var(--rad-lg);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.hs-cover-top {
+  background: var(--black);
+  padding: 32px 36px 28px;
+}
+
+.hs-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.hs-logo-dot {
+  width: 20px;
+  height: 20px;
+  background: var(--green);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hs-logo-text {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+.hs-cover-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(26px, 6vw, 36px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.hs-cover-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.65;
+  max-width: 460px;
+}
+
+.hs-cover-body {
+  padding: 24px 36px 28px;
+}
+
+.hs-dimensions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.hs-dim-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--page-bg);
+  border-radius: var(--rad-sm);
+}
+
+.hs-dim-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hs-dim-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.hs-dim-count {
+  font-size: 11px;
+  color: var(--grey-lt);
+  margin-left: auto;
+}
+
+.hs-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.hs-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--grey-lt);
+}
+
+.hs-meta-item svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.hs-start-btn {
+  width: 100%;
+  padding: 15px;
+  background: var(--green);
+  color: var(--black);
+  border: none;
+  border-radius: var(--rad-sm);
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background 0.12s, transform 0.08s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.hs-start-btn:hover { background: #7aaa81; }
+.hs-start-btn:active { transform: scale(0.99); }
+
+.hs-start-btn svg {
+  width: 16px; height: 16px;
+  stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* ── Question screen ── */
+.hs-q-screen {
+  background: var(--white);
+  border-radius: var(--rad-lg);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+  display: none;
+}
+
+.hs-q-screen.active { display: block; }
+
+.hs-progress-bar {
+  height: 3px;
+  background: var(--border);
+}
+
+.hs-progress-fill {
+  height: 100%;
+  background: var(--green);
+  transition: width 0.35s ease;
+}
+
+.hs-q-inner {
+  padding: 32px 36px 36px;
+}
+
+.hs-dim-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.hs-q-counter {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey-lt);
+  margin-bottom: 10px;
+}
+
+.hs-q-text {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(19px, 4vw, 24px);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.3;
+  margin-bottom: 24px;
+}
+
+.hs-options {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 28px;
+}
+
+.hs-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--rad-md);
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s;
+  background: var(--white);
+}
+
+.hs-option:hover {
+  border-color: var(--green);
+  background: #f5fbf6;
+}
+
+.hs-option.selected {
+  border-color: var(--green);
+  background: #f0f9f1;
+}
+
+.hs-opt-dot {
+  width: 19px;
+  height: 19px;
+  min-width: 19px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+  flex-shrink: 0;
+}
+
+.hs-option.selected .hs-opt-dot {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.hs-opt-dot-inner {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--black);
+  display: none;
+}
+
+.hs-option.selected .hs-opt-dot-inner { display: block; }
+
+.hs-opt-text {
+  font-size: 14px;
+  color: var(--black);
+  line-height: 1.5;
+}
+
+.hs-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 22px;
+  border-radius: var(--rad-sm);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.12s;
+  border: none;
+}
+
+.hs-btn-primary {
+  background: var(--black);
+  color: var(--white);
+}
+
+.hs-btn-primary:hover { background: #2a2a2a; }
+
+.hs-btn-primary:disabled {
+  background: var(--border);
+  color: var(--grey-lt);
+  cursor: not-allowed;
+}
+
+.hs-btn-ghost {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--grey-lt);
+}
+
+.hs-btn-ghost:hover { background: var(--page-bg); }
+
+.hs-btn svg {
+  width: 15px; height: 15px;
+  stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* ── Result screen ── */
+.hs-result-screen {
+  display: none;
+}
+
+.hs-result-screen.active { display: flex; flex-direction: column; gap: 10px; }
+
+/* Score hero */
+.hs-score-hero {
+  background: var(--black);
+  border-radius: var(--rad-lg);
+  padding: 32px 36px 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.hs-score-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: rgba(147,193,154,0.07);
+  pointer-events: none;
+}
+
+.hs-score-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.hs-score-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.hs-score-big {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(60px, 16vw, 96px);
+  color: var(--green);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.hs-score-denom {
+  font-size: 20px;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 14px;
+  font-family: 'DM Serif Display', serif;
+}
+
+.hs-score-grade-badge {
+  padding: 5px 14px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+.hs-score-summary {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  max-width: 440px;
+}
+
+/* Dimension bars */
+.hs-dims-card {
+  background: var(--white);
+  border-radius: var(--rad-lg);
+  padding: 28px 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.hs-dims-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-lt);
+  margin-bottom: 22px;
+}
+
+.hs-dim-row {
+  margin-bottom: 20px;
+}
+
+.hs-dim-row:last-child { margin-bottom: 0; }
+
+.hs-dim-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.hs-dim-row-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.hs-dim-row-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hs-dim-row-score {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.hs-dim-row-score span {
+  color: var(--grey-lt);
+  font-weight: 400;
+}
+
+.hs-bar-track {
+  height: 7px;
+  background: var(--page-bg);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.hs-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  width: 0%;
+  transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hs-dim-note {
+  font-size: 12px;
+  color: var(--grey-lt);
+  line-height: 1.45;
+}
+
+/* Weakest dimension callout */
+.hs-weakest-card {
+  border-radius: var(--rad-lg);
+  padding: 24px 28px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.hs-weakest-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.hs-weakest-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.hs-weakest-body {
+  font-size: 14px;
+  color: var(--grey);
+  line-height: 1.6;
+}
+
+/* CTA */
+.hs-cta {
+  background: var(--green);
+  border-radius: var(--rad-lg);
+  padding: 28px 32px 24px;
+  box-shadow: 0 4px 20px rgba(147,193,154,0.35);
+}
+
+.hs-cta-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.hs-cta-sub {
+  font-size: 13px;
+  color: rgba(0,0,0,0.6);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.hs-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: var(--rad-sm);
+  padding: 13px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.12s, transform 0.08s;
+}
+
+.hs-cta-btn:hover { background: #2a2a2a; }
+.hs-cta-btn:active { transform: scale(0.98); }
+
+.hs-cta-btn svg {
+  width: 15px; height: 15px;
+  stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.hs-retake-btn {
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: var(--grey-lt);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: underline;
+  padding: 4px 0;
+  display: block;
+  margin: 0 auto;
+}
+
+.hs-retake-btn:hover { color: var(--grey); }
+
+.hs-disclaimer {
+  font-size: 11px;
+  color: var(--grey-lt);
+  line-height: 1.6;
+  text-align: center;
+  padding: 0 8px;
+}
+
+/* SEO */
+.hs-seo {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  margin-top: 8px;
+}
+
+.hs-seo h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.hs-seo p {
+  font-size: 12px;
+  color: #ccc;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 500px) {
+  body { padding: 0 0 60px; }
+  .hs-cover-top { padding: 28px 20px 22px; }
+  .hs-cover-body { padding: 20px 20px 24px; }
+  .hs-dimensions { grid-template-columns: 1fr; gap: 7px; }
+  .hs-q-inner { padding: 24px 20px 28px; }
+  .hs-score-hero { padding: 28px 20px 24px; }
+  .hs-score-hero::before { display: none; }
+  .hs-dims-card { padding: 24px 20px; border-radius: 0; box-shadow: none; }
+  .hs-weakest-card { padding: 20px; border-radius: 0; box-shadow: none; }
+  .hs-cta { padding: 24px 20px; border-radius: 0; box-shadow: none; }
+  .hs-cover { border-radius: 0; box-shadow: none; }
+  .hs-q-screen { border-radius: 0; box-shadow: none; }
+  .hs-score-hero { border-radius: 0; }
+  .hs-seo { margin: 0 20px; }
+  .hs-disclaimer { padding: 0 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="hs-wrap">
+
+  <!-- ── COVER ── -->
+  <div class="hs-cover" id="cover-screen">
+    <div class="hs-cover-top">
+      <div class="hs-logo-row">
+        <div class="hs-logo-dot"></div>
+        <span class="hs-logo-text">Simkul Solutions</span>
+      </div>
+      <h1 class="hs-cover-title">Operations Health Score</h1>
+      <p class="hs-cover-sub">A free diagnostic for Australian SME owners. Find out exactly where your operations are strong — and where they're holding you back.</p>
+    </div>
+    <div class="hs-cover-body">
+      <div class="hs-dimensions">
+        <div class="hs-dim-pill">
+          <div class="hs-dim-swatch" style="background:#93c19a"></div>
+          <span class="hs-dim-name">Delegation</span>
+          <span class="hs-dim-count">3 questions</span>
+        </div>
+        <div class="hs-dim-pill">
+          <div class="hs-dim-swatch" style="background:#e1d8c5"></div>
+          <span class="hs-dim-name">Documentation</span>
+          <span class="hs-dim-count">3 questions</span>
+        </div>
+        <div class="hs-dim-pill">
+          <div class="hs-dim-swatch" style="background:#c5e1ca"></div>
+          <span class="hs-dim-name">Systems</span>
+          <span class="hs-dim-count">3 questions</span>
+        </div>
+        <div class="hs-dim-pill">
+          <div class="hs-dim-swatch" style="background:#111111"></div>
+          <span class="hs-dim-name" style="color:inherit">Team Capability</span>
+          <span class="hs-dim-count">3 questions</span>
+        </div>
+      </div>
+      <div class="hs-meta">
+        <span class="hs-meta-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          4 minutes
+        </span>
+        <span class="hs-meta-item">
+          <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          12 questions
+        </span>
+        <span class="hs-meta-item">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          No email required
+        </span>
+      </div>
+      <button class="hs-start-btn" id="start-btn">
+        Start the assessment
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── QUESTION SCREEN ── -->
+  <div class="hs-q-screen" id="q-screen">
+    <div class="hs-progress-bar">
+      <div class="hs-progress-fill" id="progress-fill"></div>
+    </div>
+    <div class="hs-q-inner">
+      <div class="hs-dim-tag" id="dim-tag"></div>
+      <div class="hs-q-counter" id="q-counter"></div>
+      <div class="hs-q-text" id="q-text"></div>
+      <div class="hs-options" id="options-list"></div>
+      <div class="hs-nav">
+        <button class="hs-btn hs-btn-ghost" id="back-btn">
+          <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back
+        </button>
+        <button class="hs-btn hs-btn-primary" id="next-btn">
+          Next
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RESULT SCREEN ── -->
+  <div class="hs-result-screen" id="result-screen">
+
+    <!-- Score hero -->
+    <div class="hs-score-hero">
+      <div class="hs-score-eyebrow">Your Operations Health Score</div>
+      <div class="hs-score-row">
+        <div class="hs-score-big" id="score-big">0</div>
+        <div class="hs-score-denom">/100</div>
+      </div>
+      <div class="hs-score-grade-badge" id="grade-badge"></div>
+      <p class="hs-score-summary" id="score-summary"></p>
+    </div>
+
+    <!-- Dimension bars -->
+    <div class="hs-dims-card">
+      <div class="hs-dims-title">Score by dimension</div>
+      <div id="dim-bars"></div>
+    </div>
+
+    <!-- Weakest dim callout -->
+    <div class="hs-weakest-card" id="weakest-card">
+      <div class="hs-weakest-eyebrow" id="weakest-eyebrow"></div>
+      <div class="hs-weakest-title" id="weakest-title"></div>
+      <p class="hs-weakest-body" id="weakest-body"></p>
+    </div>
+
+    <!-- CTA -->
+    <div class="hs-cta">
+      <div class="hs-cta-title">Want to know where to start?</div>
+      <p class="hs-cta-sub">Book a free 30-minute call. We'll look at your weakest dimension and tell you the one thing most likely to move the needle first.</p>
+      <a
+        href="https://link.jimmyai.net/widget/booking/WzXFina3kZ9Pf9oHeQ1j"
+        class="hs-cta-btn"
+        target="_blank"
+        rel="noopener"
+      >
+        Book a free discovery call
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <button class="hs-retake-btn" id="retake-btn">Retake the assessment</button>
+
+  </div>
+
+  <p class="hs-disclaimer">
+    This assessment is a diagnostic guide, not a clinical audit.
+    Results are based on self-reported answers and should be used as a starting point for conversation, not a definitive measure.
+  </p>
+
+  <!-- SEO static copy -->
+  <div class="hs-seo">
+    <h2>Free operations health check for Australian SME owners</h2>
+    <p>
+      The Simkul Solutions Operations Health Score is a free 12-question diagnostic for Australian
+      small business owners. It assesses four operational dimensions — delegation, documentation,
+      systems, and team capability — and produces a scored result out of 100 with a breakdown by
+      dimension. Business owners receive a plain-English explanation of their weakest area and
+      specific guidance on what to address first.
+    </p>
+    <p>
+      Most Australian SMEs with 5 to 50 staff have at least one operational dimension scoring below
+      50 out of 100. The most common weakness is documentation — key processes that exist only in
+      the owner's head, making delegation and scaling significantly harder than it needs to be.
+      Simkul Solutions is a Perth-based consulting firm helping Australian SME owners fix the
+      operational foundations that hold businesses back from growing.
+    </p>
+  </div>
+
+</div>
+
+<script>
+(function() {
+
+  /* ── Dimension config ── */
+  var DIMS = [
+    {
+      id: 'delegation',
+      name: 'Delegation',
+      color: '#93c19a',
+      bgColor: 'rgba(147,193,154,0.12)',
+      textColor: '#1a6e35',
+      weakTitle: 'Delegation is your biggest constraint right now.',
+      weakBody: 'When decisions and approvals keep flowing back to you, the business can only move as fast as you can respond. The fix is a decision authority framework — a simple, written guide that tells your team which decisions they own, which they need input on, and which they escalate. Most owners can put a working version together in an afternoon.'
+    },
+    {
+      id: 'documentation',
+      name: 'Documentation',
+      color: '#9a8f7a',
+      bgColor: 'rgba(225,216,197,0.4)',
+      textColor: '#6b5a3a',
+      weakTitle: 'Documentation is the gap that makes every other problem harder.',
+      weakBody: 'When key processes live only in your head, delegation becomes guesswork and onboarding takes months. You don\'t need to document everything at once — start with the three to five tasks that come back to you most often. Record a screen capture, write a one-page guide, or talk it through and have someone transcribe it. The medium matters less than the act of capturing it somewhere.'
+    },
+    {
+      id: 'systems',
+      name: 'Systems',
+      color: '#6aaa77',
+      bgColor: 'rgba(197,225,202,0.4)',
+      textColor: '#2a6e3a',
+      weakTitle: 'Your systems are adding friction rather than removing it.',
+      weakBody: 'Technology should make your team faster and your business more consistent. When it does the opposite — when tools are duplicated, disconnected, or rarely used as intended — it creates a hidden tax on every working day. A simple audit of what you are paying for versus what your team actually uses is usually the right place to start. The goal is fewer, better-integrated tools — not more of them.'
+    },
+    {
+      id: 'team',
+      name: 'Team Capability',
+      color: '#444444',
+      bgColor: 'rgba(17,17,17,0.07)',
+      textColor: '#222222',
+      weakTitle: 'Your business is more dependent on specific people than it should be.',
+      weakBody: 'When performance is concentrated in one or two people — including you — the business is fragile. A departure, a health issue, or simply a bad week from a key person can create a crisis. Building team capability means more than hiring well. It means cross-training, clear role expectations, and a culture where people are developed rather than just deployed. This takes time, but the risk of not doing it compounds.'
+    }
+  ];
+
+  /* ── Questions ── */
+  var QUESTIONS = [
+    /* Delegation */
+    {
+      dim: 0,
+      text: 'When you are unavailable for a full day, what happens to decisions that need to be made?',
+      options: [
+        { text: 'Almost everything waits for me — the team doesn\'t make calls without me', score: 0 },
+        { text: 'Routine things get handled, but anything non-standard waits', score: 1 },
+        { text: 'The team handles most things — they know what they can decide', score: 2 },
+        { text: 'The business runs normally — my team owns their areas clearly', score: 3 }
+      ]
+    },
+    {
+      dim: 0,
+      text: 'How clearly does your team understand what decisions they are authorised to make without asking you?',
+      options: [
+        { text: 'Not clearly at all — they ask me about most things', score: 0 },
+        { text: 'Somewhat — they know the obvious stuff but anything unusual comes to me', score: 1 },
+        { text: 'Reasonably well — there is an informal understanding', score: 2 },
+        { text: 'Very clearly — roles and decision authority are defined and followed', score: 3 }
+      ]
+    },
+    {
+      dim: 0,
+      text: 'How often do team members interrupt your day with questions you feel they should be able to answer themselves?',
+      options: [
+        { text: 'Multiple times a day — it is a constant pattern', score: 0 },
+        { text: 'Several times a week', score: 1 },
+        { text: 'Occasionally — it happens but it is not a major issue', score: 2 },
+        { text: 'Rarely — the team is largely self-directing', score: 3 }
+      ]
+    },
+    /* Documentation */
+    {
+      dim: 1,
+      text: 'How well documented are the key processes in your business?',
+      options: [
+        { text: 'Barely at all — most knowledge lives in people\'s heads', score: 0 },
+        { text: 'Patchy — some things are written down but it is inconsistent', score: 1 },
+        { text: 'Reasonably well — core processes are documented even if not perfectly', score: 2 },
+        { text: 'Comprehensively — most key processes have clear, up-to-date documentation', score: 3 }
+      ]
+    },
+    {
+      dim: 1,
+      text: 'If a key team member left tomorrow, how quickly could someone new be performing their role adequately?',
+      options: [
+        { text: 'It would take months — the knowledge is not captured anywhere', score: 0 },
+        { text: 'Several weeks — there is some documentation but large gaps', score: 1 },
+        { text: 'A few weeks with the right onboarding support', score: 2 },
+        { text: 'Relatively quickly — the role is well documented and transferable', score: 3 }
+      ]
+    },
+    {
+      dim: 1,
+      text: 'How consistently does your team perform key tasks the same way each time?',
+      options: [
+        { text: 'Very inconsistently — it depends who is doing it and when', score: 0 },
+        { text: 'Somewhat — there is variation but it mostly works out', score: 1 },
+        { text: 'Mostly consistently — a few areas are still hit and miss', score: 2 },
+        { text: 'Very consistently — we have reliable standards people follow', score: 3 }
+      ]
+    },
+    /* Systems */
+    {
+      dim: 2,
+      text: 'How well does your current technology stack serve your team\'s day-to-day work?',
+      options: [
+        { text: 'Poorly — people use workarounds constantly and the tools create friction', score: 0 },
+        { text: 'Unevenly — some tools work well, others are underused or duplicated', score: 1 },
+        { text: 'Reasonably well — the main tools work, though there is room to improve', score: 2 },
+        { text: 'Very well — the stack is clean, integrated, and actually used', score: 3 }
+      ]
+    },
+    {
+      dim: 2,
+      text: 'How easy is it to find accurate information about your business — customer records, finances, job status — when you need it?',
+      options: [
+        { text: 'Difficult — information is scattered across multiple places and often out of date', score: 0 },
+        { text: 'Manageable but slow — it takes effort to find what you need', score: 1 },
+        { text: 'Mostly straightforward — things are usually where you expect them', score: 2 },
+        { text: 'Very easy — information is centralised, current, and accessible', score: 3 }
+      ]
+    },
+    {
+      dim: 2,
+      text: 'How much of your team\'s routine, repetitive work has been automated or systematised?',
+      options: [
+        { text: 'Very little — most repetitive tasks are still done manually', score: 0 },
+        { text: 'Some — a few things are automated but there is significant manual work', score: 1 },
+        { text: 'A reasonable amount — key repetitive tasks are mostly handled by systems', score: 2 },
+        { text: 'Significantly — manual handling of routine tasks is the exception', score: 3 }
+      ]
+    },
+    /* Team Capability */
+    {
+      dim: 3,
+      text: 'How confident are you that your team can maintain current service quality without your daily involvement?',
+      options: [
+        { text: 'Not confident — quality is dependent on my direct oversight', score: 0 },
+        { text: 'Somewhat — quality holds for routine work but dips on anything complex', score: 1 },
+        { text: 'Reasonably confident — the team is capable but benefits from my input', score: 2 },
+        { text: 'Very confident — the team delivers consistent quality independently', score: 3 }
+      ]
+    },
+    {
+      dim: 3,
+      text: 'How well are performance expectations defined and communicated to your team?',
+      options: [
+        { text: 'Not well — expectations are informal and inconsistently applied', score: 0 },
+        { text: 'Partially — some roles have clear expectations, others do not', score: 1 },
+        { text: 'Mostly clearly — most team members know what good looks like in their role', score: 2 },
+        { text: 'Very clearly — expectations, KPIs, and feedback are structured and consistent', score: 3 }
+      ]
+    },
+    {
+      dim: 3,
+      text: 'How actively do you invest in developing your team\'s skills and capability?',
+      options: [
+        { text: 'Rarely — development happens reactively if at all', score: 0 },
+        { text: 'Occasionally — there is some investment but it is not structured', score: 1 },
+        { text: 'Regularly — there is a culture of learning and growing the team', score: 2 },
+        { text: 'Consistently and deliberately — team development is a priority with real investment', score: 3 }
+      ]
+    }
+  ];
+
+  /* ── Grades ── */
+  function getGrade(score) {
+    if (score >= 80) return { label: 'Strong', bg: '#d4edda', color: '#1a6e35', summary: 'Your operations are genuinely solid across most dimensions. The business can run without you being the centre of everything — which means you have real capacity to focus on growth. The areas to watch are the dimensions sitting below your average.' };
+    if (score >= 60) return { label: 'Developing', bg: '#fff3cd', color: '#7a5a00', summary: 'There are real strengths here, but one or two dimensions are pulling the score down and likely creating friction in the day-to-day. Focused work on the weakest area would have an outsized impact.' };
+    if (score >= 40) return { label: 'Needs Attention', bg: '#fde8cc', color: '#7a3a00', summary: 'The foundations are uneven. Some areas work, others are creating meaningful drag on the business. This is the zone where owners feel the most stuck — busy but not moving forward. Targeted improvements in the weakest dimension would be felt quickly.' };
+    return { label: 'Critical Gaps', bg: '#f8d7da', color: '#7a1a1a', summary: 'There are structural weaknesses across multiple dimensions that are likely costing you significant time, revenue, and energy every week. The good news: these are fixable. Starting with the single weakest dimension and building from there is the most reliable path forward.' };
+  }
+
+  /* ── Dim bar notes ── */
+  var DIM_BAR_NOTES = [
+    [ 'Most decisions still flow through you — a delegation framework would unlock your team.',
+      'Some delegation is working but gaps remain — worth defining role boundaries more clearly.',
+      'Delegation is mostly working — fine-tuning decision authority would complete the picture.',
+      'Your team operates independently — strong foundation for growth.' ],
+    [ 'Key knowledge is locked in people\'s heads — documentation is the unlock.',
+      'Some processes are captured but inconsistently — priority area to systematise.',
+      'Core processes are documented — consistency across all roles is the next step.',
+      'Documentation is a genuine strength — your business can scale without you.' ],
+    [ 'Tools are creating friction rather than removing it — a tech audit is worth the time.',
+      'Some systems work well but the stack has gaps or duplication.',
+      'Systems are mostly functional — integration and automation would lift this further.',
+      'Technology is an operational asset — well integrated and actually used.' ],
+    [ 'Team capability is concentrated in too few people — a fragile position.',
+      'Some strong performers but performance is uneven across the team.',
+      'The team is capable — structured development would build on this.',
+      'Team capability is a real strength — people know their roles and deliver on them.' ]
+  ];
+
+  function getDimNote(dimIdx, pct) {
+    var i = pct >= 75 ? 3 : pct >= 50 ? 2 : pct >= 25 ? 1 : 0;
+    return DIM_BAR_NOTES[dimIdx][i];
+  }
+
+  /* ── State ── */
+  var current = 0;
+  var answers = new Array(QUESTIONS.length).fill(null);
+  var selectedIdx = null;
+
+  /* ── DOM refs ── */
+  var coverScreen  = document.getElementById('cover-screen');
+  var qScreen      = document.getElementById('q-screen');
+  var resultScreen = document.getElementById('result-screen');
+  var progressFill = document.getElementById('progress-fill');
+  var dimTag       = document.getElementById('dim-tag');
+  var qCounter     = document.getElementById('q-counter');
+  var qText        = document.getElementById('q-text');
+  var optionsList  = document.getElementById('options-list');
+  var backBtn      = document.getElementById('back-btn');
+  var nextBtn      = document.getElementById('next-btn');
+
+  /* ── Arrow SVG ── */
+  var arrowR = '<svg style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+  var arrowL = '<svg style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>';
+
+  /* ── Render question ── */
+  function renderQ() {
+    var q   = QUESTIONS[current];
+    var dim = DIMS[q.dim];
+    var pct = (current / QUESTIONS.length) * 100;
+
+    progressFill.style.width = pct + '%';
+
+    dimTag.textContent = dim.name;
+    dimTag.style.background = dim.bgColor;
+    dimTag.style.color = dim.textColor;
+
+    qCounter.textContent = 'Question ' + (current + 1) + ' of ' + QUESTIONS.length;
+    qText.textContent = q.text;
+
+    optionsList.innerHTML = q.options.map(function(opt, i) {
+      var sel = selectedIdx === i;
+      return '<div class="hs-option' + (sel ? ' selected' : '') + '" data-i="' + i + '" tabindex="0" role="radio" aria-checked="' + sel + '">' +
+        '<div class="hs-opt-dot"><div class="hs-opt-dot-inner"></div></div>' +
+        '<div class="hs-opt-text">' + opt.text + '</div>' +
+      '</div>';
+    }).join('');
+
+    // Option click handlers
+    optionsList.querySelectorAll('.hs-option').forEach(function(el) {
+      function pick() {
+        selectedIdx = +el.getAttribute('data-i');
+        renderQ();
+      }
+      el.onclick = pick;
+      el.onkeydown = function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } };
+    });
+
+    // Back button
+    backBtn.style.visibility = current === 0 ? 'hidden' : 'visible';
+
+    // Next button
+    var isLast = current === QUESTIONS.length - 1;
+    nextBtn.disabled = selectedIdx === null;
+    nextBtn.innerHTML = (isLast ? 'See my results' : 'Next') + ' ' + arrowR;
+  }
+
+  /* ── Show question screen ── */
+  function startAssessment() {
+    coverScreen.style.display = 'none';
+    qScreen.classList.add('active');
+    current = 0;
+    answers.fill(null);
+    selectedIdx = null;
+    renderQ();
+  }
+
+  /* ── Navigate ── */
+  nextBtn.onclick = function() {
+    if (selectedIdx === null) return;
+    answers[current] = selectedIdx;
+    if (current < QUESTIONS.length - 1) {
+      current++;
+      selectedIdx = answers[current] !== null ? answers[current] : null;
+      renderQ();
+    } else {
+      showResults();
+    }
+  };
+
+  backBtn.onclick = function() {
+    if (current > 0) {
+      answers[current] = selectedIdx;
+      current--;
+      selectedIdx = answers[current] !== null ? answers[current] : null;
+      renderQ();
+    }
+  };
+
+  /* ── Count-up ── */
+  function countUp(el, target, duration) {
+    var start = null;
+    var ease = function(t) { return 1 - Math.pow(1 - t, 3); };
+    requestAnimationFrame(function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      el.textContent = Math.round(ease(p) * target);
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    });
+  }
+
+  /* ── Show results ── */
+  function showResults() {
+    qScreen.classList.remove('active');
+    resultScreen.classList.add('active');
+
+    // Calculate dim scores (0–100 per dimension)
+    var dimScores = [0, 0, 0, 0];
+    var dimMax    = [0, 0, 0, 0];
+
+    QUESTIONS.forEach(function(q, qi) {
+      var d = q.dim;
+      var maxScore = q.options.length - 1;
+      dimMax[d] += maxScore;
+      if (answers[qi] !== null) {
+        dimScores[d] += q.options[answers[qi]].score;
+      }
+    });
+
+    var dimPcts = dimScores.map(function(s, i) {
+      return Math.round((s / dimMax[i]) * 100);
+    });
+
+    var overall = Math.round(dimPcts.reduce(function(a, b) { return a + b; }, 0) / 4);
+    var grade   = getGrade(overall);
+
+    // Score hero
+    var scoreBig = document.getElementById('score-big');
+    countUp(scoreBig, overall, 1000);
+
+    var gradeBadge = document.getElementById('grade-badge');
+    gradeBadge.textContent = grade.label;
+    gradeBadge.style.background = grade.bg;
+    gradeBadge.style.color = grade.color;
+
+    document.getElementById('score-summary').textContent = grade.summary;
+
+    // Dimension bars (staggered)
+    var barsHtml = dimPcts.map(function(pct, i) {
+      var dim = DIMS[i];
+      var note = getDimNote(i, pct);
+      return '<div class="hs-dim-row">' +
+        '<div class="hs-dim-row-header">' +
+          '<div class="hs-dim-row-name">' +
+            '<div class="hs-dim-row-dot" style="background:' + dim.color + '"></div>' +
+            dim.name +
+          '</div>' +
+          '<div class="hs-dim-row-score">' + pct + '<span>/100</span></div>' +
+        '</div>' +
+        '<div class="hs-bar-track">' +
+          '<div class="hs-bar-fill" id="bar-' + i + '" style="background:' + dim.color + '"></div>' +
+        '</div>' +
+        '<div class="hs-dim-note">' + note + '</div>' +
+      '</div>';
+    }).join('');
+
+    document.getElementById('dim-bars').innerHTML = barsHtml;
+
+    // Animate bars with stagger
+    dimPcts.forEach(function(pct, i) {
+      setTimeout(function() {
+        var bar = document.getElementById('bar-' + i);
+        if (bar) bar.style.width = pct + '%';
+      }, 300 + i * 180);
+    });
+
+    // Weakest dimension
+    var weakIdx = dimPcts.indexOf(Math.min.apply(null, dimPcts));
+    var weakDim = DIMS[weakIdx];
+    var weakCard = document.getElementById('weakest-card');
+
+    weakCard.style.background = weakDim.bgColor;
+    weakCard.style.borderLeft = '4px solid ' + weakDim.color;
+
+    var weakEyebrow = document.getElementById('weakest-eyebrow');
+    weakEyebrow.textContent = 'Weakest dimension — ' + weakDim.name;
+    weakEyebrow.style.color = weakDim.textColor;
+
+    document.getElementById('weakest-title').textContent = weakDim.weakTitle;
+    document.getElementById('weakest-body').textContent = weakDim.weakBody;
+
+    // Scroll to top
+    setTimeout(function() {
+      resultScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }
+
+  /* ── Start / retake ── */
+  document.getElementById('start-btn').onclick = startAssessment;
+
+  document.getElementById('retake-btn').onclick = function() {
+    resultScreen.classList.remove('active');
+    coverScreen.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+})();
+</script>
+
+</body>
+</html>
