@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cost of Staying Stuck Calculator | Simkul Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #f0ede6;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px 64px;
+}
+
+/* ── Wrapper ── */
+.calc-wrap {
+  width: 100%;
+  max-width: 620px;
+}
+
+/* ── Header ── */
+.calc-header {
+  padding: 0 0 32px;
+}
+
+.calc-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.calc-logo-dot {
+  width: 22px;
+  height: 22px;
+  background: #93c19a;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.calc-logo-text {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.calc-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 34px;
+  font-weight: 400;
+  color: #111;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.calc-subtitle {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+/* ── Input card ── */
+.input-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 36px 36px 32px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+  margin-bottom: 16px;
+}
+
+.input-group {
+  margin-bottom: 36px;
+}
+
+.input-group:last-of-type {
+  margin-bottom: 8px;
+}
+
+.input-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* ── Slider ── */
+.slider-value-display {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.slider-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 48px;
+  color: #111;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.slider-unit {
+  font-size: 15px;
+  color: #888;
+  font-weight: 500;
+}
+
+.slider-wrap {
+  position: relative;
+  padding: 6px 0;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 99px;
+  outline: none;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    #93c19a 0%,
+    #93c19a var(--fill, 32%),
+    #e0ddd7 var(--fill, 32%),
+    #e0ddd7 100%
+  );
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2.5px solid #93c19a;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2.5px solid #93c19a;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+
+.slider-limits {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* ── Rate pills ── */
+.rate-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rate-pill {
+  padding: 9px 18px;
+  border-radius: 99px;
+  border: 1.5px solid #e0ddd7;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  color: #444;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.rate-pill:hover {
+  border-color: #93c19a;
+  color: #111;
+}
+
+.rate-pill.active {
+  background: #93c19a;
+  border-color: #93c19a;
+  color: #000;
+  font-weight: 600;
+}
+
+.custom-rate-wrap {
+  margin-top: 14px;
+  display: none;
+}
+
+.custom-rate-wrap.visible {
+  display: block;
+}
+
+.custom-rate-input {
+  width: 100%;
+  max-width: 200px;
+  padding: 10px 14px;
+  border: 1.5px solid #e0ddd7;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  color: #111;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.custom-rate-input:focus {
+  border-color: #93c19a;
+}
+
+.custom-rate-prefix {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+/* ── Calculate button ── */
+.calc-btn {
+  width: 100%;
+  padding: 16px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.calc-btn:hover { background: #222; }
+.calc-btn:active { transform: scale(0.99); }
+
+.calc-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Results ── */
+.result-section {
+  display: none;
+}
+
+.result-section.visible {
+  display: block;
+}
+
+/* Hero result — black card */
+.result-hero {
+  background: #111;
+  border-radius: 16px;
+  padding: 40px 36px 36px;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.result-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(147, 193, 154, 0.08);
+  pointer-events: none;
+}
+
+.result-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #93c19a;
+  margin-bottom: 12px;
+}
+
+.result-big-number {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(52px, 12vw, 80px);
+  color: #93c19a;
+  line-height: 1;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+.result-big-label {
+  font-size: 16px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.result-inputs-recap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 99px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+
+.result-inputs-recap strong {
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+}
+
+/* Projections row */
+.projections {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.proj-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 18px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+.proj-card.featured {
+  background: #e1d8c5;
+}
+
+.proj-year {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+.proj-card.featured .proj-year {
+  color: #888;
+}
+
+.proj-amount {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  color: #111;
+  line-height: 1;
+}
+
+/* What it could fund */
+.comparison-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+.comparison-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.comparison-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f2ede5;
+}
+
+.comparison-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.comparison-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  background: #f0f9f0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.comparison-text-wrap {}
+
+.comparison-headline {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+
+.comparison-sub {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.4;
+}
+
+/* CTA card */
+.cta-card {
+  background: #93c19a;
+  border-radius: 16px;
+  padding: 32px 32px 28px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 16px rgba(147,193,154,0.3);
+}
+
+.cta-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.cta-sub {
+  font-size: 14px;
+  color: rgba(0,0,0,0.65);
+  margin-bottom: 22px;
+  line-height: 1.6;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.cta-btn:hover { background: #333; }
+
+.cta-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.cta-contact {
+  font-size: 13px;
+  color: rgba(0,0,0,0.5);
+  margin-top: 14px;
+}
+
+.cta-contact strong { color: rgba(0,0,0,0.75); }
+
+/* Recalculate */
+.recalc-btn {
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: #aaa;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: underline;
+  padding: 0;
+  display: block;
+  margin: 0 auto 0;
+}
+
+.recalc-btn:hover { color: #555; }
+
+/* ── Disclaimer ── */
+.disclaimer {
+  font-size: 12px;
+  color: #bbb;
+  text-align: center;
+  margin-top: 28px;
+  line-height: 1.6;
+  padding: 0 8px;
+}
+
+/* ── SEO static copy (crawlable, visually minimal) ── */
+.seo-content {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid #e5e0d8;
+}
+
+.seo-content h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.seo-content p {
+  font-size: 13px;
+  color: #aaa;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  body { padding: 0; background: #f0ede6; }
+  .calc-wrap { max-width: 100%; }
+  .calc-header { padding: 28px 20px 24px; }
+  .input-card { border-radius: 0; padding: 28px 20px 24px; box-shadow: none; }
+  .calc-title { font-size: 28px; }
+  .result-hero { border-radius: 0; padding: 32px 20px 28px; }
+  .result-hero::before { display: none; }
+  .projections { gap: 8px; }
+  .proj-card { padding: 16px 14px; border-radius: 10px; }
+  .proj-amount { font-size: 20px; }
+  .comparison-card { border-radius: 0; padding: 24px 20px; box-shadow: none; }
+  .cta-card { border-radius: 0; padding: 28px 20px 24px; box-shadow: none; }
+  .disclaimer { padding: 0 20px; }
+  .seo-content { margin: 28px 20px 0; }
+  .result-section.visible > * { border-radius: 0; }
+  .projections { margin: 0 0 10px; }
+}
+
+@media (max-width: 360px) {
+  .rate-pill { padding: 8px 13px; font-size: 13px; }
+  .slider-num { font-size: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="calc-wrap">
+
+  <!-- Header -->
+  <header class="calc-header">
+    <div class="calc-logo">
+      <div class="calc-logo-dot"></div>
+      <span class="calc-logo-text">Simkul Solutions</span>
+    </div>
+    <h1 class="calc-title">Cost of Staying&nbsp;Stuck Calculator</h1>
+    <p class="calc-subtitle">Two numbers. Thirty seconds. Find out exactly what founder dependency is costing your business — every year.</p>
+  </header>
+
+  <!-- Input card -->
+  <div class="input-card" id="input-card">
+
+    <!-- Input 1: Hours -->
+    <div class="input-group">
+      <label class="input-label" for="hours-slider">
+        Hours per week you spend on tasks someone else could handle
+      </label>
+      <div class="slider-value-display">
+        <span class="slider-num" id="hours-display" aria-live="polite">15</span>
+        <span class="slider-unit">hrs / week</span>
+      </div>
+      <div class="slider-wrap">
+        <input
+          type="range"
+          id="hours-slider"
+          min="2"
+          max="40"
+          value="15"
+          step="1"
+          aria-label="Hours per week"
+          aria-valuemin="2"
+          aria-valuemax="40"
+          aria-valuenow="15"
+        >
+      </div>
+      <div class="slider-limits">
+        <span>2 hrs</span>
+        <span>40 hrs</span>
+      </div>
+    </div>
+
+    <!-- Input 2: Rate -->
+    <div class="input-group">
+      <label class="input-label">Your approximate hourly rate</label>
+      <div class="rate-pills" role="group" aria-label="Select hourly rate">
+        <button class="rate-pill" data-value="75" aria-pressed="false">$75/hr</button>
+        <button class="rate-pill active" data-value="100" aria-pressed="true">$100/hr</button>
+        <button class="rate-pill" data-value="150" aria-pressed="false">$150/hr</button>
+        <button class="rate-pill" data-value="200" aria-pressed="false">$200/hr</button>
+        <button class="rate-pill" data-value="custom" aria-pressed="false">Custom</button>
+      </div>
+      <div class="custom-rate-wrap" id="custom-rate-wrap">
+        <div class="custom-rate-prefix">Enter your hourly rate in AUD</div>
+        <input
+          type="number"
+          id="custom-rate"
+          class="custom-rate-input"
+          placeholder="e.g. 180"
+          min="1"
+          max="2000"
+          aria-label="Custom hourly rate"
+        >
+      </div>
+    </div>
+
+    <button class="calc-btn" id="calc-btn">
+      Calculate my cost
+      <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </div>
+
+  <!-- Results -->
+  <div class="result-section" id="result-section" aria-live="polite">
+
+    <!-- Hero: big number -->
+    <div class="result-hero">
+      <div class="result-eyebrow">Annual cost of staying stuck</div>
+      <div class="result-big-number" id="result-number" aria-label="Annual cost">$0</div>
+      <div class="result-big-label">This is what founder dependency costs your business every year — in your time alone.</div>
+      <div class="result-inputs-recap" id="result-recap"></div>
+    </div>
+
+    <!-- Projections -->
+    <div class="projections">
+      <div class="proj-card">
+        <div class="proj-year">1 year</div>
+        <div class="proj-amount" id="proj-1yr">$0</div>
+      </div>
+      <div class="proj-card featured">
+        <div class="proj-year">3 years</div>
+        <div class="proj-amount" id="proj-3yr">$0</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-year">5 years</div>
+        <div class="proj-amount" id="proj-5yr">$0</div>
+      </div>
+    </div>
+
+    <!-- Comparisons -->
+    <div class="comparison-card">
+      <div class="comparison-title">What that same money could fund instead</div>
+      <div id="comparisons-list"></div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-card">
+      <div class="cta-title">Ready to stop paying tax on your time?</div>
+      <div class="cta-sub">Book a free 30-minute call. We'll show you which hours are the easiest to recover first — and what to do with them.</div>
+      <a
+        href="https://link.jimmyai.net/widget/booking/WzXFina3kZ9Pf9oHeQ1j"
+        class="cta-btn"
+        target="_blank"
+        rel="noopener"
+      >
+        Book a free discovery call
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <div class="cta-contact">Or call us: <strong>0468 083 663</strong></div>
+    </div>
+
+    <button class="recalc-btn" id="recalc-btn">Recalculate with different numbers</button>
+
+  </div>
+
+  <!-- Disclaimer -->
+  <p class="disclaimer">
+    This calculator estimates the direct time cost of founder dependency based on your inputs.
+    It does not account for opportunity cost, team inefficiency, or growth foregone.
+    In most cases, the real cost is higher.
+  </p>
+
+  <!-- SEO static copy -->
+  <div class="seo-content">
+    <h2>What is the cost of founder dependency for Australian SMEs?</h2>
+    <p>
+      The Cost of Staying Stuck Calculator helps Australian small business owners
+      quantify how much founder dependency is costing them — in real dollars, per year.
+      Built by Simkul Solutions, a Perth-based SME consulting firm, this free tool
+      takes two inputs: the hours per week a business owner spends on tasks someone
+      else could handle, and their approximate hourly rate.
+    </p>
+    <p>
+      Most SME owners who run the calculation find the annual figure is significantly
+      higher than expected. At 15 hours per week and $100 per hour, that's $78,000
+      per year in founder time spent on tasks that should be delegated, documented,
+      or handed to an offshore hire.
+    </p>
+    <p>
+      Simkul Solutions works with Australian SME owners to reduce this cost through
+      operations consulting, offshore recruitment, and business process improvement.
+      Book a free 30-minute discovery call at simkul.au.
+    </p>
+  </div>
+
+</div>
+
+<script>
+  // ── State ──
+  var selectedRate = 100;
+  var hoursVal = 15;
+
+  // ── Slider ──
+  var slider = document.getElementById('hours-slider');
+  var hoursDisplay = document.getElementById('hours-display');
+
+  function updateSliderFill() {
+    var min = parseInt(slider.min);
+    var max = parseInt(slider.max);
+    var val = parseInt(slider.value);
+    var pct = ((val - min) / (max - min)) * 100;
+    slider.style.setProperty('--fill', pct + '%');
+    hoursDisplay.textContent = val;
+    slider.setAttribute('aria-valuenow', val);
+    hoursVal = val;
+  }
+
+  slider.addEventListener('input', updateSliderFill);
+  updateSliderFill();
+
+  // ── Rate pills ──
+  var pills = document.querySelectorAll('.rate-pill');
+  var customWrap = document.getElementById('custom-rate-wrap');
+  var customInput = document.getElementById('custom-rate');
+
+  pills.forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      pills.forEach(function(p) {
+        p.classList.remove('active');
+        p.setAttribute('aria-pressed', 'false');
+      });
+      pill.classList.add('active');
+      pill.setAttribute('aria-pressed', 'true');
+
+      var val = pill.getAttribute('data-value');
+      if (val === 'custom') {
+        customWrap.classList.add('visible');
+        customInput.focus();
+        selectedRate = parseInt(customInput.value) || 0;
+      } else {
+        customWrap.classList.remove('visible');
+        selectedRate = parseInt(val);
+      }
+    });
+  });
+
+  customInput.addEventListener('input', function() {
+    selectedRate = parseInt(this.value) || 0;
+  });
+
+  // ── Format currency ──
+  function formatCurrency(n) {
+    if (n >= 1000000) {
+      return '$' + (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    }
+    if (n >= 10000) {
+      return '$' + Math.round(n / 1000) + 'k';
+    }
+    return '$' + n.toLocaleString('en-AU');
+  }
+
+  function formatCurrencyFull(n) {
+    return '$' + Math.round(n).toLocaleString('en-AU');
+  }
+
+  // ── Count-up animation ──
+  function countUp(el, target, duration, formatter) {
+    var start = 0;
+    var startTime = null;
+    var prefix = '$';
+
+    function easeOut(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var elapsed = timestamp - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      var current = Math.round(easeOut(progress) * target);
+      el.textContent = formatter(current);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = formatter(target);
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  // ── Calculate ──
+  document.getElementById('calc-btn').addEventListener('click', function() {
+    var rate = selectedRate;
+
+    // Validate custom
+    if (document.querySelector('.rate-pill[data-value="custom"]').classList.contains('active')) {
+      rate = parseInt(customInput.value) || 0;
+    }
+
+    if (!rate || rate <= 0) {
+      customInput.style.borderColor = '#e55';
+      customInput.focus();
+      return;
+    }
+
+    var annual = hoursVal * rate * 52;
+    var yr3 = annual * 3;
+    var yr5 = annual * 5;
+
+    // Build comparisons
+    var offshoreYears = (annual / 18000).toFixed(1);
+    var offshoreHires = Math.floor(annual / 18000);
+    var weeksBack = Math.round(hoursVal * 52 / 40);
+    var projects = (annual / 7500).toFixed(1);
+
+    var comparisons = [
+      {
+        icon: '🌏',
+        headline: offshoreHires >= 1
+          ? offshoreHires + ' dedicated offshore hire' + (offshoreHires > 1 ? 's' : '') + ' for a full year'
+          : offshoreYears + ' years of dedicated offshore support',
+        sub: 'At Australian SME offshore rates — full salary paid directly to your hire'
+      },
+      {
+        icon: '📋',
+        headline: 'A complete operations project — ' + projects + ' times over',
+        sub: 'Documented processes, delegation framework, team systems — done properly'
+      },
+      {
+        icon: '🗓️',
+        headline: weeksBack + ' working weeks back in your year',
+        sub: 'Every year, on repeat — if the root cause gets fixed'
+      }
+    ];
+
+    var compHtml = comparisons.map(function(c) {
+      return '<div class="comparison-item">' +
+        '<div class="comparison-icon">' + c.icon + '</div>' +
+        '<div class="comparison-text-wrap">' +
+          '<div class="comparison-headline">' + c.headline + '</div>' +
+          '<div class="comparison-sub">' + c.sub + '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    document.getElementById('comparisons-list').innerHTML = compHtml;
+
+    // Recap
+    document.getElementById('result-recap').innerHTML =
+      '<strong>' + hoursVal + ' hrs/week</strong> &nbsp;·&nbsp; <strong>$' + rate + '/hr</strong>';
+
+    // Show result
+    document.getElementById('input-card').style.display = 'none';
+    var resultSection = document.getElementById('result-section');
+    resultSection.classList.add('visible');
+
+    // Animate numbers
+    var resultEl = document.getElementById('result-number');
+    countUp(resultEl, annual, 1400, formatCurrencyFull);
+
+    document.getElementById('proj-1yr').textContent = formatCurrency(annual);
+    document.getElementById('proj-3yr').textContent = formatCurrency(yr3);
+    document.getElementById('proj-5yr').textContent = formatCurrency(yr5);
+
+    // Scroll to result
+    setTimeout(function() {
+      resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  });
+
+  // ── Recalculate ──
+  document.getElementById('recalc-btn').addEventListener('click', function() {
+    document.getElementById('result-section').classList.remove('visible');
+    document.getElementById('input-card').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
